@@ -44,7 +44,7 @@ impl EcstasyCollector for E621Collector {
     fn collect(&self, tags: Vec<String>) -> Result<Vec<EcstasyItem>, EcstasyError> {
         info!("Starting {} collector...", &self.name());
         let mut items = Vec::new();
-        let mut page = 0u64;
+        let mut page = 1u64; // starts at 1
         let mut finished = false;
         while !finished {
             debug!("Grabbing page with Reqwest GET...");
