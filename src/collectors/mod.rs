@@ -7,3 +7,5 @@ pub mod yandere;
 pub mod e926;
 pub mod realbooru;
 pub mod danbooru;
+pub mod hypnohub;
+pub mod safebooru;

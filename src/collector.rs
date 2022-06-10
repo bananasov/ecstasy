@@ -9,6 +9,8 @@ use crate::collectors::yandere::YandereCollector;
 use crate::collectors::e926::E926Collector;
 use crate::collectors::realbooru::RealbooruCollector;
 use crate::collectors::danbooru::DanbooruCollector;
+use crate::collectors::hypnohub::HypnohubCollector;
+use crate::collectors::safebooru::SafebooruCollector;
 
 use crate::error::EcstasyError;
 use crate::item::EcstasyItem;
@@ -79,6 +81,8 @@ impl CollectorCore {
             E926Collector::boxed(),
             RealbooruCollector::boxed(),
             DanbooruCollector::boxed(),
+            HypnohubCollector::boxed(),
+            SafebooruCollector::boxed(),
         ];
         Self {
             stats,
