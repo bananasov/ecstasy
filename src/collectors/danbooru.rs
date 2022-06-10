@@ -77,11 +77,13 @@ impl EcstasyCollector for DanbooruCollector {
                 info!("Page {} is empty, stopping collection.", &page);
             } else {
                 for post in posts {
-                    items.push(EcstasyItem::new(
-                        post.file_url,
-                        tags.clone(),
-                        self.id().to_owned(),
-                    ));
+                    if post.valid() {
+                        items.push(EcstasyItem::new(
+                            post.large_file_url,
+                            tags.clone(),
+                            self.id().to_owned(),
+                        ));
+                    }
                 }
                 page += 1;
             }
@@ -92,7 +94,16 @@ impl EcstasyCollector for DanbooruCollector {
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct DanbooruPost {
-    pub file_url: String,
-    pub tag_string: String,
+    #[serde(default = "String::default")]
+    pub large_file_url: String,
+    #[serde(default = "String::default")]
+    pub tag_string_general: String,
+    #[serde(default = "String::default")]
     pub md5: String,
+}
+
+impl DanbooruPost {
+    pub fn valid(&self) -> bool {
+        !(self.large_file_url.is_empty() || self.md5.is_empty())
+    }
 }
