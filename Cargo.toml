@@ -7,7 +7,11 @@ keywords = ["image", "scrapper", "gallery"]
 license = "GPL-3.0"
 readme = "README.md"
 repository = "https://github.com/Autist69420/ecstasy"
-description = "A modular, expandable, gallery collector."
+description = "A fork of the modular, expandable, gallery collector named Kyanite"
+exclude = [
+    ".obsidian/"
+]
+
 
 [profile.release]
 opt-level = 3
