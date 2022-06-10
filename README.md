@@ -39,8 +39,8 @@ cargo install --path .
 | Yandere  | yandere   | yande.re           | Tags |
 | Xbooru   | xbooru    | xbooru.com         | Tags |
 | Realbooru| realbooru | realbooru.com      | Tags |
-| Hypnohub | hypnohub  | hypnohub.net       | tags |
-| Safebooru| safebooru | safebooru.org      | tags |
+| Hypnohub | hypnohub  | hypnohub.net       | Tags |
+| Safebooru| safebooru | safebooru.org      | Tags |
 
 ## Planned Service Support
 
