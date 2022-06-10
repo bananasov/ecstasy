@@ -9,18 +9,18 @@ use crate::collectors::yandere::YandereCollector;
 use crate::collectors::e926::E926Collector;
 use crate::collectors::realbooru::RealbooruCollector;
 
-use crate::error::KyaniteError;
-use crate::item::KyaniteItem;
-use crate::manifest::{KyaniteManifest, KyaniteManifestItem};
-use crate::params::KyaniteParams;
+use crate::error::EcstasyError;
+use crate::item::EcstasyItem;
+use crate::manifest::{EcstasyManifest, EcstasyManifestItem};
+use crate::params::EcstasyParams;
 use crate::stats::StatsContainer;
-use crate::utility::KyaniteUtility;
+use crate::utility::EcstasyUtility;
 
-pub trait KyaniteCollector {
+pub trait EcstasyCollector {
     fn id(&self) -> &'static str;
     fn name(&self) -> &'static str;
-    fn manifest(&self) -> KyaniteManifest {
-        let manifest = KyaniteManifest::new(self.id().to_owned());
+    fn manifest(&self) -> EcstasyManifest {
+        let manifest = EcstasyManifest::new(self.id().to_owned());
         match manifest.load() {
             Ok(man) => man,
             Err(why) => {
@@ -56,17 +56,17 @@ pub trait KyaniteCollector {
         debug!("{} API: {}", &self.name(), &api);
         api
     }
-    fn collect(&self, tags: Vec<String>) -> Result<Vec<KyaniteItem>, KyaniteError>;
+    fn collect(&self, tags: Vec<String>) -> Result<Vec<EcstasyItem>, EcstasyError>;
 }
 
 pub struct CollectorCore {
     stats: StatsContainer,
-    params: KyaniteParams,
-    collectors: Vec<Box<dyn KyaniteCollector>>,
+    params: EcstasyParams,
+    collectors: Vec<Box<dyn EcstasyCollector>>,
 }
 
 impl CollectorCore {
-    pub fn new(params: KyaniteParams) -> Self {
+    pub fn new(params: EcstasyParams) -> Self {
         let stats = StatsContainer::new();
         let collectors = vec![
             E621Collector::boxed(),
@@ -85,7 +85,7 @@ impl CollectorCore {
         }
     }
 
-    pub fn collect(&mut self) -> Vec<KyaniteItem> {
+    pub fn collect(&mut self) -> Vec<EcstasyItem> {
         info!(
             "Searching for {} on {}.",
             &self.params.tags.join(", "),
@@ -110,7 +110,7 @@ impl CollectorCore {
                     for item in collected {
                         match item.path() {
                             Ok(path) => {
-                                let manifest_item = KyaniteManifestItem::new(
+                                let manifest_item = EcstasyManifestItem::new(
                                     item.url.clone(),
                                     path,
                                     item.tags.clone(),
@@ -136,10 +136,10 @@ impl CollectorCore {
                 }
             }
         }
-        KyaniteItem::trim(items)
+        EcstasyItem::trim(items)
     }
 
-    pub fn get_manifest(&self, name: String) -> Option<KyaniteManifest> {
+    pub fn get_manifest(&self, name: String) -> Option<EcstasyManifest> {
         let mut manifest = None;
         for collector in &self.collectors {
             if collector.id() == name {
@@ -150,7 +150,7 @@ impl CollectorCore {
         manifest
     }
 
-    pub fn download(&mut self, items: Option<Vec<KyaniteItem>>) -> Result<(), KyaniteError> {
+    pub fn download(&mut self, items: Option<Vec<EcstasyItem>>) -> Result<(), EcstasyError> {
         let items = match items {
             Some(items) => items,
             None => self.collect(),
@@ -166,14 +166,14 @@ impl CollectorCore {
                         "{} [{}] [{}] [{}/{}]: {}",
                         resp,
                         self.stats.describe(),
-                        KyaniteUtility::human_size(self.stats.size, 3f64, "GiB"),
+                        EcstasyUtility::human_size(self.stats.size, 3f64, "GiB"),
                         self.stats.count(),
                         &total,
                         item.describe()
                     );
                 }
                 None => {
-                    result = Err(KyaniteError::from(format!(
+                    result = Err(EcstasyError::from(format!(
                         "An item tried referencing and unknown manifest type: {}",
                         &item.coll
                     )));

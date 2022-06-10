@@ -1,11 +1,11 @@
-use crate::error::KyaniteError;
+use crate::error::EcstasyError;
 use log::{debug, info};
 use fern::colors::{Color, ColoredLevelConfig};
 
-pub struct KyaniteLogger;
+pub struct EcstasyLogger;
 
-impl KyaniteLogger {
-    pub fn init(verbose: bool) -> Result<(), KyaniteError> {
+impl EcstasyLogger {
+    pub fn init(verbose: bool) -> Result<(), EcstasyError> {
         let colors_line = ColoredLevelConfig::new()
             .error(Color::Red)
             .warn(Color::Yellow)

@@ -285,6 +285,25 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "56899898ce76aaf4a0f24d914c97ea6ed976d42fec6ad33fcbb0a1103e07b2b0"
 
 [[package]]
+name = "ecstasy"
+version = "0.3.0"
+dependencies = [
+ "anyhow",
+ "chrono",
+ "clap",
+ "fern",
+ "flate2",
+ "log",
+ "md5",
+ "reqwest",
+ "serde",
+ "serde-xml-rs",
+ "serde_derive",
+ "serde_json",
+ "slug",
+]
+
+[[package]]
 name = "either"
 version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -611,25 +630,6 @@ checksum = "7507624b29483431c0ba2d82aece8ca6cdba9382bff4ddd0f7490560c056098d"
 dependencies = [
  "winapi 0.2.8",
  "winapi-build",
-]
-
-[[package]]
-name = "kyanite"
-version = "0.3.0"
-dependencies = [
- "anyhow",
- "chrono",
- "clap",
- "fern",
- "flate2",
- "log",
- "md5",
- "reqwest",
- "serde",
- "serde-xml-rs",
- "serde_derive",
- "serde_json",
- "slug",
 ]
 
 [[package]]

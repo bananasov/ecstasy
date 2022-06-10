@@ -1,12 +1,12 @@
 [package]
-edition = "2018"
-name = "kyanite"
+edition = "2021"
+name = "ecstasy"
 version = "0.3.0"
-authors = ["AXAz0r <thealeksaradovic@gmail.com>"]
+authors = ["AXAz0r <thealeksaradovic@gmail.com>", "Autist69420 <enp7s1@tutanota.com>"]
 keywords = ["image", "scrapper", "gallery"]
 license = "GPL-3.0"
 readme = "README.md"
-repository = "https://gitlab.com/lu-ci/kyanite"
+repository = "https://github.com/Autist69420/ecstasy"
 description = "A modular, expandable, gallery collector."
 
 [profile.release]

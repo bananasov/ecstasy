@@ -1,6 +1,6 @@
-use crate::collector::KyaniteCollector;
-use crate::error::KyaniteError;
-use crate::item::KyaniteItem;
+use crate::collector::EcstasyCollector;
+use crate::error::EcstasyError;
+use crate::item::EcstasyItem;
 use log::{debug, info};
 use serde::{Deserialize, Serialize};
 
@@ -11,12 +11,12 @@ impl KonachanCollector {
     pub fn new() -> Self {
         Self::default()
     }
-    pub fn boxed() -> Box<dyn KyaniteCollector> {
+    pub fn boxed() -> Box<dyn EcstasyCollector> {
         Box::new(Self::new())
     }
 }
 
-impl KyaniteCollector for KonachanCollector {
+impl EcstasyCollector for KonachanCollector {
     fn id(&self) -> &'static str {
         "konachan"
     }
@@ -41,7 +41,7 @@ impl KyaniteCollector for KonachanCollector {
         "page"
     }
 
-    fn collect(&self, tags: Vec<String>) -> Result<Vec<KyaniteItem>, KyaniteError> {
+    fn collect(&self, tags: Vec<String>) -> Result<Vec<EcstasyItem>, EcstasyError> {
         info!("Starting {} collector...", &self.name());
         let mut items = Vec::new();
         let mut page = 0u64;
@@ -77,7 +77,7 @@ impl KyaniteCollector for KonachanCollector {
                 info!("Page {} is empty, stopping collection.", &page);
             } else {
                 for post in posts {
-                    items.push(KyaniteItem::new(
+                    items.push(EcstasyItem::new(
                         post.file_url,
                         tags.clone(),
                         self.id().to_owned(),

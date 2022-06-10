@@ -1,29 +1,29 @@
 use serde::{Deserialize, Serialize};
 
-use crate::error::KyaniteError;
+use crate::error::EcstasyError;
 
 use log::debug;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct KyaniteManifestItem {
+pub struct EcstasyManifestItem {
     pub url: String,
     pub file: String,
     pub tags: Vec<String>,
 }
 
-impl KyaniteManifestItem {
+impl EcstasyManifestItem {
     pub fn new(url: String, file: String, tags: Vec<String>) -> Self {
         Self { url, file, tags }
     }
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct KyaniteManifest {
-    pub files: Vec<KyaniteManifestItem>,
+pub struct EcstasyManifest {
+    pub files: Vec<EcstasyManifestItem>,
     pub downloader: String,
 }
 
-impl KyaniteManifest {
+impl EcstasyManifest {
     pub fn new(downloader: String) -> Self {
         Self {
             files: Vec::new(),
@@ -31,7 +31,7 @@ impl KyaniteManifest {
         }
     }
 
-    fn _get_path(&self) -> Result<String, KyaniteError> {
+    fn _get_path(&self) -> Result<String, EcstasyError> {
         let folder = format!("downloads/{}", &self.downloader);
         if !std::path::Path::new(&folder).exists() {
             debug!(
@@ -43,15 +43,15 @@ impl KyaniteManifest {
         Ok(format!("{}/manifest.json.gz", folder))
     }
 
-    pub fn add(&mut self, _item: KyaniteManifestItem) -> Self {
+    pub fn add(&mut self, _item: EcstasyManifestItem) -> Self {
         self.clone()
     }
 
-    pub fn load(&self) -> Result<Self, KyaniteError> {
+    pub fn load(&self) -> Result<Self, EcstasyError> {
         Ok(self.to_owned())
     }
 
-    pub fn save(&self) -> Result<(), KyaniteError> {
+    pub fn save(&self) -> Result<(), EcstasyError> {
         Ok(())
     }
 }

@@ -1,8 +1,8 @@
-use crate::error::KyaniteError;
+use crate::error::EcstasyError;
 use clap::{crate_authors, crate_description, crate_name, crate_version, Arg};
 
 #[derive(Clone, Debug)]
-pub struct KyaniteParams {
+pub struct EcstasyParams {
     pub verbose: bool,
     pub debug: bool,
     pub sources: Vec<String>,
@@ -10,8 +10,8 @@ pub struct KyaniteParams {
     pub insane: bool,
 }
 
-impl KyaniteParams {
-    pub fn new() -> Result<Self, KyaniteError> {
+impl EcstasyParams {
+    pub fn new() -> Result<Self, EcstasyError> {
         let matches =
             clap::app_from_crate!()
                 .arg(

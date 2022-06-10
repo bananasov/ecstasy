@@ -1,8 +1,8 @@
-use crate::collector::KyaniteCollector;
-use crate::item::KyaniteItem;
+use crate::collector::EcstasyCollector;
+use crate::item::EcstasyItem;
 use serde::{Deserialize, Serialize};
 
-use crate::error::KyaniteError;
+use crate::error::EcstasyError;
 use log::{debug, info};
 
 #[derive(Clone, Debug, Default)]
@@ -13,12 +13,12 @@ impl RealbooruCollector {
         Self::default()
     }
 
-    pub fn boxed() -> Box<dyn KyaniteCollector> {
+    pub fn boxed() -> Box<dyn EcstasyCollector> {
         Box::new(Self::new())
     }
 }
 
-impl KyaniteCollector for RealbooruCollector {
+impl EcstasyCollector for RealbooruCollector {
     fn id(&self) -> &'static str {
         "realbooru"
     }
@@ -43,7 +43,7 @@ impl KyaniteCollector for RealbooruCollector {
         "pid"
     }
 
-    fn collect(&self, tags: Vec<String>) -> Result<Vec<KyaniteItem>, KyaniteError> {
+    fn collect(&self, tags: Vec<String>) -> Result<Vec<EcstasyItem>, EcstasyError> {
         info!("Starting {} collector...", &self.name());
         let mut items = Vec::new();
         let mut page = 0u64;
@@ -83,7 +83,7 @@ impl KyaniteCollector for RealbooruCollector {
                 info!("Page {} is empty, stopping collection.", &page);
             } else {
                 for post in posts.posts {
-                    items.push(KyaniteItem::new(
+                    items.push(EcstasyItem::new(
                         post.file_url,
                         tags.clone(),
                         self.id().to_owned(),

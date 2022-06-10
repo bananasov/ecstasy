@@ -1,5 +1,7 @@
 # Ecstasy Collector
 
+> Check out the original project [here!](https://gitlab.com/lu-ci/kyanite/)
+
 ## What Is Ecstasy
 
 [Ecstasy](https://en.wikipedia.org/wiki/Ecstasy_(emotion)) (from Ancient Greek ἔκστασις ékstasis, meaning 'outside of oneself') is a subjective experience of total involvement of the subject, with an object of their awareness. In classical Greek literature it refers to removal of the mind or body "from its normal place of function."

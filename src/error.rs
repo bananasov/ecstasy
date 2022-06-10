@@ -1,5 +1,5 @@
 #[derive(Debug)]
-pub enum KyaniteError {
+pub enum EcstasyError {
     IOError(std::io::Error),
     ReqwestError(reqwest::Error),
     ReqwestUrlError(reqwest::UrlError),
@@ -11,56 +11,56 @@ pub enum KyaniteError {
     FromUTF8Error(std::string::FromUtf8Error),
 }
 
-impl From<std::io::Error> for KyaniteError {
+impl From<std::io::Error> for EcstasyError {
     fn from(err: std::io::Error) -> Self {
-        KyaniteError::IOError(err)
+        EcstasyError::IOError(err)
     }
 }
 
-impl From<reqwest::Error> for KyaniteError {
+impl From<reqwest::Error> for EcstasyError {
     fn from(err: reqwest::Error) -> Self {
-        KyaniteError::ReqwestError(err)
+        EcstasyError::ReqwestError(err)
     }
 }
 
-impl From<reqwest::UrlError> for KyaniteError {
+impl From<reqwest::UrlError> for EcstasyError {
     fn from(err: reqwest::UrlError) -> Self {
-        KyaniteError::ReqwestUrlError(err)
+        EcstasyError::ReqwestUrlError(err)
     }
 }
 
-impl From<serde_json::Error> for KyaniteError {
+impl From<serde_json::Error> for EcstasyError {
     fn from(err: serde_json::Error) -> Self {
-        KyaniteError::SerdeJSONError(err)
+        EcstasyError::SerdeJSONError(err)
     }
 }
 
-impl From<log::SetLoggerError> for KyaniteError {
+impl From<log::SetLoggerError> for EcstasyError {
     fn from(err: log::SetLoggerError) -> Self {
-        KyaniteError::SetLoggerError(err)
+        EcstasyError::SetLoggerError(err)
     }
 }
 
-impl From<serde_xml_rs::Error> for KyaniteError {
+impl From<serde_xml_rs::Error> for EcstasyError {
     fn from(err: serde_xml_rs::Error) -> Self {
-        KyaniteError::SerdeXMLError(err)
+        EcstasyError::SerdeXMLError(err)
     }
 }
 
-impl From<flate2::DecompressError> for KyaniteError {
+impl From<flate2::DecompressError> for EcstasyError {
     fn from(err: flate2::DecompressError) -> Self {
-        KyaniteError::DecompressError(err)
+        EcstasyError::DecompressError(err)
     }
 }
 
-impl From<String> for KyaniteError {
+impl From<String> for EcstasyError {
     fn from(err: String) -> Self {
-        KyaniteError::SimpleString(err)
+        EcstasyError::SimpleString(err)
     }
 }
 
-impl From<std::string::FromUtf8Error> for KyaniteError {
+impl From<std::string::FromUtf8Error> for EcstasyError {
     fn from(err: std::string::FromUtf8Error) -> Self {
-        KyaniteError::FromUTF8Error(err)
+        EcstasyError::FromUTF8Error(err)
     }
 }

@@ -2,29 +2,29 @@ use std::io::prelude::*;
 
 use log::debug;
 
-use crate::error::KyaniteError;
-use crate::manifest::KyaniteManifest;
+use crate::error::EcstasyError;
+use crate::manifest::EcstasyManifest;
 use crate::stats::StatsContainer;
-use crate::utility::KyaniteUtility;
+use crate::utility::EcstasyUtility;
 
 #[derive(Clone, Debug)]
-pub struct KyaniteItemMD5 {
+pub struct EcstasyItemMD5 {
     pub url: String,
     pub image: String,
 }
 
 #[derive(Clone, Debug)]
-pub struct KyaniteItem {
+pub struct EcstasyItem {
     pub url: String,
     pub ext: String,
-    pub md5: KyaniteItemMD5,
+    pub md5: EcstasyItemMD5,
     pub data: Option<Vec<u8>>,
     pub size: f64,
     pub tags: Vec<String>,
     pub coll: String,
 }
 
-impl KyaniteItem {
+impl EcstasyItem {
     pub fn new(url: String, tags: Vec<String>, coll: String) -> Self {
         let raw_pieces = url.split('.');
         let mut pieces = Vec::<String>::new();
@@ -41,7 +41,7 @@ impl KyaniteItem {
         Self {
             url: url.to_owned(),
             ext: clean_last_piece,
-            md5: KyaniteItemMD5 {
+            md5: EcstasyItemMD5 {
                 url: format!("{:x}", md5::compute(&url)),
                 image: "".to_owned(),
             },
@@ -56,13 +56,13 @@ impl KyaniteItem {
         format!("{}.{}", &self.md5.clone().url, &self.ext)
     }
 
-    pub fn download(&mut self) -> Result<(), KyaniteError> {
+    pub fn download(&mut self) -> Result<(), EcstasyError> {
         let mut data: Vec<u8> = Vec::new();
         let mut resp = reqwest::get(&self.url)?;
         resp.copy_to(&mut data)?;
         let item_url_md5 = format!("{:x}", md5::compute(&self.url));
         let item_data_md5 = format!("{:x}", md5::compute(&data));
-        self.md5 = KyaniteItemMD5 {
+        self.md5 = EcstasyItemMD5 {
             url: item_url_md5,
             image: item_data_md5,
         };
@@ -76,7 +76,7 @@ impl KyaniteItem {
             "{}.{} [{}]",
             &self.md5.clone().url,
             &self.ext,
-            KyaniteUtility::human_size(self.size, 2f64, "MiB"),
+            EcstasyUtility::human_size(self.size, 2f64, "MiB"),
         )
     }
 
@@ -84,7 +84,7 @@ impl KyaniteItem {
         self.data = None;
     }
 
-    pub fn path(&self) -> Result<String, KyaniteError> {
+    pub fn path(&self) -> Result<String, EcstasyError> {
         let folder = format!(
             "downloads/{}/{}",
             &self.coll,
@@ -101,7 +101,7 @@ impl KyaniteItem {
         ))
     }
 
-    pub fn _indexed(&self, _manifest: &KyaniteManifest) -> Option<String> {
+    pub fn _indexed(&self, _manifest: &EcstasyManifest) -> Option<String> {
         let mut location = None;
         let path = self.path().unwrap_or_else(|_| "".to_owned());
         if !path.is_empty() && std::path::Path::new(&path).exists() {
@@ -134,7 +134,7 @@ impl KyaniteItem {
         Ok(location)
     }
 
-    pub fn store(&mut self, path: String) -> Result<(), KyaniteError> {
+    pub fn store(&mut self, path: String) -> Result<(), EcstasyError> {
         self.download()?;
         let mut file = std::fs::File::create(&path)?;
         file.write_all(&self.data.clone().unwrap())?;
@@ -146,7 +146,7 @@ impl KyaniteItem {
         &mut self,
         stats: &mut StatsContainer,
         index: Option<String>,
-    ) -> Result<String, KyaniteError> {
+    ) -> Result<String, EcstasyError> {
         let response: &'static str;
         let path = self.path()?;
         match index {

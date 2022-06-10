@@ -1,9 +1,9 @@
 use log::{error, info, warn};
 
 use crate::collector::CollectorCore;
-use crate::error::KyaniteError;
-use crate::logger::KyaniteLogger;
-use crate::params::KyaniteParams;
+use crate::error::EcstasyError;
+use crate::logger::EcstasyLogger;
+use crate::params::EcstasyParams;
 
 mod collector;
 mod collectors;
@@ -15,9 +15,9 @@ mod params;
 mod stats;
 mod utility;
 
-fn main() -> Result<(), KyaniteError> {
-    let params = KyaniteParams::new()?;
-    KyaniteLogger::init(params.verbose)?;
+fn main() -> Result<(), EcstasyError> {
+    let params = EcstasyParams::new()?;
+    EcstasyLogger::init(params.verbose)?;
     if params.insane {
         warn!("Insanity mode enabled! I really hope you know what you're doing...");
     }

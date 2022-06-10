@@ -1,8 +1,8 @@
 // https://e926.net/posts.json
 
-use crate::collector::KyaniteCollector;
-use crate::error::KyaniteError;
-use crate::item::KyaniteItem;
+use crate::collector::EcstasyCollector;
+use crate::error::EcstasyError;
+use crate::item::EcstasyItem;
 use log::{debug, info};
 use serde::{Deserialize, Serialize};
 
@@ -13,12 +13,12 @@ impl E926Collector {
     pub fn new() -> Self {
         Self::default()
     }
-    pub fn boxed() -> Box<dyn KyaniteCollector> {
+    pub fn boxed() -> Box<dyn EcstasyCollector> {
         Box::new(Self::new())
     }
 }
 
-impl KyaniteCollector for E926Collector {
+impl EcstasyCollector for E926Collector {
     fn id(&self) -> &'static str {
         "e926"
     }
@@ -43,7 +43,7 @@ impl KyaniteCollector for E926Collector {
         "page"
     }
 
-    fn collect(&self, tags: Vec<String>) -> Result<Vec<KyaniteItem>, KyaniteError> {
+    fn collect(&self, tags: Vec<String>) -> Result<Vec<EcstasyItem>, EcstasyError> {
         info!("Starting {} collector...", &self.name());
         let mut items = Vec::new();
         let mut page = 0u64;
@@ -81,7 +81,7 @@ impl KyaniteCollector for E926Collector {
                 for post in posts {
                     let url = post.file.url.unwrap_or_else(|| "".to_owned());
                     if !url.is_empty() {
-                        items.push(KyaniteItem::new(url, tags.clone(), self.id().to_owned()));
+                        items.push(EcstasyItem::new(url, tags.clone(), self.id().to_owned()));
                     }
                 }
                 page += 1;
