@@ -1,4 +1,5 @@
 # Ecstasy Collector
+![Crates.io](https://img.shields.io/crates/v/ecstasy?style=plastic) ![Crates.io](https://img.shields.io/crates/d/ecstasy?style=plastic)
 
 > Check out the original project [here!](https://gitlab.com/lu-ci/kyanite/)
 
