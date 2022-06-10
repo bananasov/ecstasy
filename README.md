@@ -1,36 +1,40 @@
-# Kyanite Collector
+# Ecstasy Collector
 
-[![apex](https://i.imgur.com/1GVFeT6.png)](https://luciascipher.com/)
+## What Is Ecstasy
 
-## What Is Kyanite
-
-[Kyanite](https://en.wikipedia.org/wiki/Kyanite) is a typically blue silicate mineral, commonly found in aluminium-rich
-metamorphic pegmatites and/or sedimentary rock. Kyanite in metamorphic rocks generally indicates pressures higher than
-four kilobars. Although potentially stable at lower pressure and low temperature, the activity of water is usually high
-enough under such conditions that it is replaced by hydrous aluminosilicates such as muscovite, pyrophyllite, or
-kaolinite. Kyanite is also known as disthene, rhaeticite and cyanite.
+[Ecstasy](https://en.wikipedia.org/wiki/Ecstasy_(emotion)) (from Ancient Greek ἔκστασις ékstasis, meaning 'outside of oneself') is a subjective experience of total involvement of the subject, with an object of their awareness. In classical Greek literature it refers to removal of the mind or body "from its normal place of function."
 
 ## How to install and run
 
 ### Via Cargo
 
 ```sh
-cargo install kyanite
+cargo install ecstasy
 # Make sure your $CARGO_HOME/bin is in your $PATH
 ```
 
-> Try `kyanite --help` for more command line options.
+### Installing from source
+```sh
+git clone https://github.com/Autist69420/ecstasy.git
+cd ecstasy
+cargo build --release
+cargo install --path .
+```
+
+> Try `ecstasy --help` for more command line options.
 
 ## Supported Services
 
 | Service  | Collector | Location     | Type |
 |----------|-----------|--------------|------|
 | e621     | e621      | e621.net     | Tags |
+| e926     | e926      | e926.net     | Tags |
 | Gelbooru | gelbooru  | gelbooru.com | Tags |
 | Konachan | konachan  | konachan.com | Tags |
 | Rule34   | rule34    | rule34.xxx   | Tags |
 | Yandere  | yandere   | yande.re     | Tags |
 | Xbooru   | xbooru    | xbooru.com   | Tags |
+| Realbooru| realbooru | realbooru.com| Tags |
 
 ## Planned Service Support
 

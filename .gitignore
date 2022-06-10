@@ -4,3 +4,4 @@
 /downloads
 .cargo/
 .rustup/
+.obsidian/
