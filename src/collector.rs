@@ -8,6 +8,7 @@ use crate::collectors::xbooru::XBooruCollector;
 use crate::collectors::yandere::YandereCollector;
 use crate::collectors::e926::E926Collector;
 use crate::collectors::realbooru::RealbooruCollector;
+use crate::collectors::danbooru::DanbooruCollector;
 
 use crate::error::EcstasyError;
 use crate::item::EcstasyItem;
@@ -77,6 +78,7 @@ impl CollectorCore {
             YandereCollector::boxed(),
             E926Collector::boxed(),
             RealbooruCollector::boxed(),
+            DanbooruCollector::boxed(),
         ];
         Self {
             stats,
