@@ -4,3 +4,5 @@ pub mod konachan;
 pub mod rule34;
 pub mod xbooru;
 pub mod yandere;
+pub mod e926;
+pub mod realbooru;

@@ -6,6 +6,9 @@ use crate::collectors::konachan::KonachanCollector;
 use crate::collectors::rule34::Rule34Collector;
 use crate::collectors::xbooru::XBooruCollector;
 use crate::collectors::yandere::YandereCollector;
+use crate::collectors::e926::E926Collector;
+use crate::collectors::realbooru::RealbooruCollector;
+
 use crate::error::KyaniteError;
 use crate::item::KyaniteItem;
 use crate::manifest::{KyaniteManifest, KyaniteManifestItem};
@@ -72,6 +75,8 @@ impl CollectorCore {
             Rule34Collector::boxed(),
             XBooruCollector::boxed(),
             YandereCollector::boxed(),
+            E926Collector::boxed(),
+            RealbooruCollector::boxed(),
         ];
         Self {
             stats,
@@ -80,7 +85,7 @@ impl CollectorCore {
         }
     }
 
-    pub fn collect(&self) -> Vec<KyaniteItem> {
+    pub fn collect(&mut self) -> Vec<KyaniteItem> {
         info!(
             "Searching for {} on {}.",
             &self.params.tags.join(", "),
