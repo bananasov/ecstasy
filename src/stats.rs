@@ -25,22 +25,22 @@ impl StatsContainer {
 
     pub fn add_ok(&mut self) -> &'static str {
         self.ok += 1;
-        "DOWNLOADED"
+        "\x1b[92mDOWNLOADED\x1b[0m"
     }
 
     pub fn add_failed(&mut self) -> &'static str {
         self.failed += 1;
-        "FAILED"
+        "\x1b[91mFAILED\x1b[0m"
     }
 
     pub fn add_skipped(&mut self) -> &'static str {
         self.skipped += 1;
-        "SKIPPED"
+        "\x1b[36mSKIPPED\x1b[0m"
     }
 
     pub fn add_inherited(&mut self) -> &'static str {
         self.inherited += 1;
-        "INHERITED"
+        "\x1b[95mINHERITED\x1b[0m"
     }
 
     pub fn add_size(&mut self, amount: f64) {

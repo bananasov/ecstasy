@@ -31,10 +31,11 @@ fn main() -> Result<(), KyaniteError> {
         let mut collector = CollectorCore::new(params.clone());
         let items = collector.collect();
         if !params.debug {
-            collector.download(Some(items))?;
+            collector.download(Some(items.clone()))?;
         } else {
             info!("Skipped downloading phase, debugging mode is enabled.");
         }
+        info!("Downloaded {} items with tags: ({})", items.len(), params.tags.join(","));
         info!("All jobs finished, goodbye!");
     }
     Ok(())
