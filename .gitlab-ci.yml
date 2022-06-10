@@ -66,9 +66,9 @@ build_stable:
     - echo 'Building stable release...'
     - cargo build --release
   artifacts:
-    name: "kyanite"
+    name: "ecstasy"
     paths:
-      - "target/release/kyanite"
+      - "target/release/ecstasy"
 
 build_nightly:
   stage: "build"
@@ -88,4 +88,4 @@ crates_io:
     - echo 'Publishing to crates.io...'
     - cargo publish --token "$CRATES_IO_API_TOKEN"
   only:
-    - tags@lu-ci/kyanite
+    - tags@lu-ci/ecstasy
