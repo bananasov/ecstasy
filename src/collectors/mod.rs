@@ -9,3 +9,4 @@ pub mod realbooru;
 pub mod danbooru;
 pub mod hypnohub;
 pub mod safebooru;
+pub mod bleachbooru;

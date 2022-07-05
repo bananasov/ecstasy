@@ -11,6 +11,7 @@ use crate::collectors::realbooru::RealbooruCollector;
 use crate::collectors::danbooru::DanbooruCollector;
 use crate::collectors::hypnohub::HypnohubCollector;
 use crate::collectors::safebooru::SafebooruCollector;
+use crate::collectors::bleachbooru::BleachbooruCollector;
 
 use crate::error::EcstasyError;
 use crate::item::EcstasyItem;
@@ -83,6 +84,7 @@ impl CollectorCore {
             DanbooruCollector::boxed(),
             HypnohubCollector::boxed(),
             SafebooruCollector::boxed(),
+            BleachbooruCollector::boxed(),
         ];
         Self {
             stats,

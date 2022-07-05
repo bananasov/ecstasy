@@ -28,19 +28,20 @@ cargo install --path .
 
 ## Supported Services
 
-| Service  | Collector | Location           | Type |
-|----------|-----------|--------------------|------|
-| e621     | e621      | e621.net           | Tags |
-| e926     | e926      | e926.net           | Tags |
-| Gelbooru | gelbooru  | gelbooru.com       | Tags |
-| Danbooru | danbooru  | danbooru.donmai.us | Tags |
-| Konachan | konachan  | konachan.com       | Tags |
-| Rule34   | rule34    | rule34.xxx         | Tags |
-| Yandere  | yandere   | yande.re           | Tags |
-| Xbooru   | xbooru    | xbooru.com         | Tags |
-| Realbooru| realbooru | realbooru.com      | Tags |
-| Hypnohub | hypnohub  | hypnohub.net       | Tags |
-| Safebooru| safebooru | safebooru.org      | Tags |
+| Service    | Collector   | Location           | Type |
+|------------|-------------|--------------------|------|
+| e621       | e621        | e621.net           | Tags |
+| e926       | e926        | e926.net           | Tags |
+| Gelbooru   | gelbooru    | gelbooru.com       | Tags |
+| Danbooru   | danbooru    | danbooru.donmai.us | Tags |
+| Konachan   | konachan    | konachan.com       | Tags |
+| Rule34     | rule34      | rule34.xxx         | Tags |
+| Yandere    | yandere     | yande.re           | Tags |
+| Xbooru     | xbooru      | xbooru.com         | Tags |
+| Realbooru  | realbooru   | realbooru.com      | Tags |
+| Hypnohub   | hypnohub    | hypnohub.net       | Tags |
+| Safebooru  | safebooru   | safebooru.org      | Tags |
+| Bleachbooru| bleachbooru | bleachbooru.org    | Tags |
 
 ## Planned Service Support
 
