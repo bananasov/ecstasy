@@ -89,14 +89,14 @@ impl EcstasyParams {
                     Ok(limit) => limit,
                     Err(why) => {
                         error!(
-                            "Failed to parse pagelimit, defaulting to zero: {:#?}",
+                            "Failed to parse pagelimit, defaulting to maximum: {:#?}",
                             why
                         );
-                        0
+                        u64::MAX
                     }
                 }
             }
-            None => 0
+            None => u64::MAX
         };
         Ok(Self {
             verbose,
