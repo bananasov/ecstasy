@@ -43,7 +43,7 @@ impl EcstasyCollector for GelbooruCollector {
         "pid"
     }
 
-    fn collect(&self, tags: Vec<String>) -> Result<Vec<EcstasyItem>, EcstasyError> {
+    fn collect(&self, tags: Vec<String>, pagelimit: &u64) -> Result<Vec<EcstasyItem>, EcstasyError> {
         info!("Starting {} collector...", &self.name());
         let mut items = Vec::new();
         let mut page = 0u64;
@@ -89,6 +89,12 @@ impl EcstasyCollector for GelbooruCollector {
                         self.id().to_owned(),
                     ));
                 }
+
+                if &page >= pagelimit {
+                    finished = true;
+                    info!("Pagelimit hit at {}, stopping collection.", &page);
+                }
+
                 page += 1;
             }
         }
