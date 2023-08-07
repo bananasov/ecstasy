@@ -41,7 +41,7 @@ impl EcstasyCollector for DanbooruCollector {
         "page"
     }
 
-    fn collect(&self, tags: Vec<String>) -> Result<Vec<EcstasyItem>, EcstasyError> {
+    fn collect(&self, tags: Vec<String>, pagelimit: &u64) -> Result<Vec<EcstasyItem>, EcstasyError> {
         info!("Starting {} collector...", &self.name());
         let mut items = Vec::new();
         let mut page = 1u64; // starts at 1
@@ -85,6 +85,12 @@ impl EcstasyCollector for DanbooruCollector {
                         ));
                     }
                 }
+
+                if &page >= pagelimit {
+                    finished = true;
+                    info!("Pagelimit hit at {}, stopping collection.", &page);
+                }
+
                 page += 1;
             }
         }

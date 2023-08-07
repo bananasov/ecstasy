@@ -60,7 +60,7 @@ pub trait EcstasyCollector {
         debug!("{} API: {}", &self.name(), &api);
         api
     }
-    fn collect(&self, tags: Vec<String>) -> Result<Vec<EcstasyItem>, EcstasyError>;
+    fn collect(&self, tags: Vec<String>, pagelimit: &u64) -> Result<Vec<EcstasyItem>, EcstasyError>;
 }
 
 pub struct CollectorCore {
@@ -103,7 +103,7 @@ impl CollectorCore {
         for collector in &self.collectors {
             for source in &self.params.sources {
                 if source == collector.id() || source == collector.name() || source == "all" {
-                    let collected = match collector.collect((&self.params.tags).to_owned()) {
+                    let collected = match collector.collect((&self.params.tags).to_owned(), &self.params.pagelimit) {
                         Ok(clctd) => clctd,
                         Err(why) => {
                             error!(
